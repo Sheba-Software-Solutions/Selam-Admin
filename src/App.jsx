@@ -4,46 +4,53 @@ import ProductForm from './components/ProductForm'
 import ProductPreview from './components/ProductPreview'
 import JobForm from './components/JobForm'
 import JobPreview from './components/JobPreview'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs'
-import { Plus } from 'lucide-react'
+import Sidebar from './components/Sidebar'
 import { useState } from 'react'
+import { Plus } from 'lucide-react'
 
-function App() {
+function App({ onLogout }) {
   const [activeTab, setActiveTab] = useState('products')
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+
+  // Determine grid columns based on sidebar state
+  const gridCols = sidebarCollapsed ? 'md:grid-cols-2' : 'md:grid-cols-1'
 
   return (
     <FormProvider>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-        <Navbar />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-slate-800 mb-2">Content Management</h2>
-            <p className="text-slate-600">Create and manage products and job postings</p>
-          </div>
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-2 mb-8 bg-white/50 backdrop-blur-sm">
-              <TabsTrigger value="products" className="flex items-center space-x-2">
-                <Plus className="w-4 h-4" />
-                <span>Products</span>
-              </TabsTrigger>
-              <TabsTrigger value="jobs" className="flex items-center space-x-2">
-                <Plus className="w-4 h-4" />
-                <span>Jobs</span>
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="products" className="animate-fade-in">
-              <div className="grid lg:grid-cols-2 gap-8">
-                <ProductForm />
-                <ProductPreview />
+        <Navbar onLogout={onLogout} />
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-8 flex flex-row items-start gap-8">
+          <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed} onLogout={onLogout} />
+          <main className="flex-1 ml-0 md:ml-0 transition-all duration-300">
+            <div className="mb-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div>
+                <h2 className="text-3xl font-bold text-slate-800 mb-1">Content Management</h2>
+                <p className="text-slate-600">Create and manage products and job postings</p>
               </div>
-            </TabsContent>
-            <TabsContent value="jobs" className="animate-fade-in">
-              <div className="grid lg:grid-cols-2 gap-8">
-                <JobForm />
-                <JobPreview />
-              </div>
-            </TabsContent>
-          </Tabs>
+            </div>
+            <div className={`grid grid-cols-1 ${gridCols} gap-8 animate-fade-in`}>
+              {activeTab === 'products' && (
+                <>
+                  <section className="min-h-[520px] flex flex-col justify-between bg-white/60 backdrop-blur-lg rounded-2xl p-10 shadow-lg border border-slate-200/30 transition-all duration-300">
+                    <ProductForm />
+                  </section>
+                  <section className="min-h-[520px] flex flex-col justify-between bg-white/60 backdrop-blur-lg rounded-2xl p-10 shadow-lg border border-slate-200/30 transition-all duration-300">
+                    <ProductPreview />
+                  </section>
+                </>
+              )}
+              {activeTab === 'jobs' && (
+                <>
+                  <section className="min-h-[520px] flex flex-col justify-between bg-white/60 backdrop-blur-lg rounded-2xl p-10 shadow-lg border border-slate-200/30 transition-all duration-300">
+                    <JobForm />
+                  </section>
+                  <section className="min-h-[520px] flex flex-col justify-between bg-white/60 backdrop-blur-lg rounded-2xl p-10 shadow-lg border border-slate-200/30 transition-all duration-300">
+                    <JobPreview />
+                  </section>
+                </>
+              )}
+            </div>
+          </main>
         </div>
       </div>
     </FormProvider>

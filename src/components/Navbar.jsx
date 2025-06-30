@@ -2,10 +2,14 @@ import { useState } from 'react'
 import { Button } from './ui/button'
 import { User, Bell, Settings, LogOut, Users, BarChart3, Menu, X } from 'lucide-react'
 
-export default function Navbar() {
+export default function Navbar({ onLogout }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
+
+  const handleLogout = () => {
+    if (onLogout) onLogout()
+  }
 
   return (
     <nav className="bg-white/90 backdrop-blur-md border-b border-slate-200/50 sticky top-0 z-50 shadow-sm">
@@ -64,10 +68,10 @@ export default function Navbar() {
                     <User className="w-4 h-4 text-slate-500" />
                     <span>Profile</span>
                   </a>
-                  <a href="#" className="flex items-center space-x-2 px-4 py-2 hover:bg-slate-50 transition-colors text-red-600">
+                  <button onClick={handleLogout} className="flex items-center space-x-2 px-4 py-2 hover:bg-slate-50 transition-colors text-red-600 w-full text-left">
                     <LogOut className="w-4 h-4" />
                     <span>Logout</span>
-                  </a>
+                  </button>
                 </div>
               )}
             </div>
@@ -98,10 +102,10 @@ export default function Navbar() {
               <span>Notifications</span>
             </a>
             <hr className="border-slate-200" />
-            <a href="#" className="flex items-center space-x-2 p-2 hover:bg-slate-50 rounded-lg transition-colors text-red-600">
+            <button onClick={handleLogout} className="flex items-center space-x-2 p-2 hover:bg-slate-50 rounded-lg transition-colors text-red-600 w-full text-left">
               <LogOut className="w-4 h-4" />
               <span>Logout</span>
-            </a>
+            </button>
           </div>
         </div>
       )}
