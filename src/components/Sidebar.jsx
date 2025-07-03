@@ -31,7 +31,7 @@ export default function Sidebar({ activeTab, setActiveTab, collapsed, setCollaps
       )}
       <aside
         className={`
-          fixed z-40 top-24 left-0 md:relative md:top-0 md:left-0 h-[calc(100vh-6rem)] md:h-full w-${collapsed ? '20' : '56'} bg-white/60 backdrop-blur-lg border-r border-slate-200/40
+          fixed z-50 left-0 top-0 h-screen w-${collapsed ? '20' : '64'} bg-white/60 backdrop-blur-lg border-r border-slate-200/40
           flex flex-col transition-all duration-300 ease-in-out shadow-2xl
           ${open ? 'translate-x-0' : '-translate-x-full'}
           md:translate-x-0 md:block
@@ -39,6 +39,18 @@ export default function Sidebar({ activeTab, setActiveTab, collapsed, setCollaps
         aria-label="Sidebar navigation"
       >
         <div className="flex flex-col h-full p-6 space-y-6">
+          {/* Selam Admin Branding */}
+          <div className={`flex items-center space-x-3 mb-6 ${collapsed ? 'justify-center' : ''}`}>
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">S</span>
+            </div>
+            {!collapsed && (
+              <div>
+                <h1 className="text-xl font-bold text-slate-800">Selam Admin</h1>
+                <p className="text-xs text-slate-500">Dashboard</p>
+              </div>
+            )}
+          </div>
           <nav className="flex-1 space-y-1 text-sm">
             {navItems.map((item) => {
               const isActive = activeTab === item.value
@@ -66,26 +78,13 @@ export default function Sidebar({ activeTab, setActiveTab, collapsed, setCollaps
           </nav>
           <div className="relative mt-auto">
             <button
-              onClick={() => setUserMenuOpen(!userMenuOpen)}
+              onClick={handleLogout}
               className={`flex items-center gap-3 px-4 py-2 w-full rounded-lg text-left hover:bg-slate-100/80 transition-colors ${collapsed ? 'justify-center' : 'justify-start'} text-slate-500`}
-              aria-haspopup="true"
-              aria-expanded={userMenuOpen}
-              title={collapsed ? 'Profile' : undefined}
+              title={collapsed ? 'Logout' : undefined}
             >
-              <User className="w-5 h-5 text-slate-500" />
-              {!collapsed && <span className="text-sm">Profile</span>}
+              <LogOut className="w-5 h-5 text-slate-500" />
+              {!collapsed && <span className="text-sm">Logout</span>}
             </button>
-            {userMenuOpen && !collapsed && (
-              <div className="absolute bottom-12 w-full bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-slate-200/50 py-2 animate-fade-in">
-                <button
-                  onClick={handleLogout}
-                  className="flex items-center gap-3 px-4 py-2 w-full text-left text-red-600 hover:bg-slate-100/80 transition-colors"
-                >
-                  <LogOut className="w-5 h-5" />
-                  <span className="text-sm">Logout</span>
-                </button>
-              </div>
-            )}
           </div>
           <button
             className="mt-8 flex items-center justify-center w-full py-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors text-slate-500"

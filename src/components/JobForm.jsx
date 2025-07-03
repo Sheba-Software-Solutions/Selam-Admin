@@ -47,7 +47,7 @@ export default function JobForm() {
 
   return (
     <Card className="bg-white/90 backdrop-blur-md border-slate-200/30 shadow-xl rounded-2xl">
-      <CardHeader className="bg-gradient-to-r from-green-700 to-teal-700 text-white rounded-t-2xl py-5">
+      <CardHeader className="bg-gradient-to-r from-blue-700 to-blue-500 text-white rounded-t-2xl py-5">
         <CardTitle className="flex items-center space-x-3 text-lg font-semibold">
           <Plus className="w-6 h-6" />
           <span>Create Job Posting</span>
@@ -60,7 +60,7 @@ export default function JobForm() {
             value={jobForm.title}
             onChange={(e) => setJobForm((prev) => ({ ...prev, title: e.target.value }))}
             placeholder="e.g., UI/UX Designer"
-            className="w-full border-slate-300 focus:border-green-600 focus:ring-green-600 rounded-lg py-3 text-sm transition-all duration-300"
+            className="w-full border-slate-300 focus:border-blue-600 focus:ring-blue-600 rounded-lg py-3 text-sm transition-all duration-300"
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -83,7 +83,7 @@ export default function JobForm() {
               value={jobForm.location}
               onChange={(e) => setJobForm((prev) => ({ ...prev, location: e.target.value }))}
               placeholder="e.g., Addis Ababa, Ethiopia"
-              className="w-full border-slate-300 focus:border-green-600 rounded-lg py-3 text-sm transition-all duration-300"
+              className="w-full border-slate-300 focus:border-blue-600 rounded-lg py-3 text-sm transition-all duration-300"
             />
           </div>
         </div>
@@ -107,7 +107,7 @@ export default function JobForm() {
               value={jobForm.experience}
               onChange={(e) => setJobForm((prev) => ({ ...prev, experience: e.target.value }))}
               placeholder="e.g., 3+ years"
-              className="w-full border-slate-300 focus:border-green-600 rounded-lg py-3 text-sm transition-all duration-300"
+              className="w-full border-slate-300 focus:border-blue-600 rounded-lg py-3 text-sm transition-all duration-300"
             />
           </div>
         </div>
@@ -117,7 +117,7 @@ export default function JobForm() {
             value={jobForm.salary}
             onChange={(e) => setJobForm((prev) => ({ ...prev, salary: e.target.value }))}
             placeholder="e.g., $30,000 - $45,000"
-            className="w-full border-slate-300 focus:border-green-600 rounded-lg py-3 text-sm transition-all duration-300"
+            className="w-full border-slate-300 focus:border-blue-600 rounded-lg py-3 text-sm transition-all duration-300"
           />
         </div>
         <div>
@@ -127,7 +127,7 @@ export default function JobForm() {
             onChange={(e) => setJobForm((prev) => ({ ...prev, description: e.target.value }))}
             placeholder="Enter job description"
             rows={4}
-            className="w-full border-slate-300 focus:border-green-600 focus:ring-green-600 rounded-lg py-3 text-sm transition-all duration-300"
+            className="w-full border-slate-300 focus:border-blue-600 focus:ring-blue-600 rounded-lg py-3 text-sm transition-all duration-300"
           />
         </div>
         <div>
@@ -136,16 +136,16 @@ export default function JobForm() {
             <Input
               id="new-requirement"
               placeholder="Add a requirement"
-              className="w-full border-slate-300 focus:border-green-600 rounded-lg py-3 text-sm transition-all duration-300"
+              className="w-full border-slate-300 focus:border-blue-600 rounded-lg py-3 text-sm transition-all duration-300"
               onKeyPress={(e) => e.key === 'Enter' && addRequirement()}
             />
-            <Button onClick={addRequirement} size="sm" className="bg-green-700 hover:bg-green-800 text-white rounded-lg px-6 py-3 transition-all duration-300">
+            <Button onClick={addRequirement} size="sm" className="bg-blue-700 hover:bg-blue-800 text-white rounded-lg px-6 py-3 transition-all duration-300">
               Add
             </Button>
           </div>
           <div className="flex flex-wrap gap-2">
             {jobForm.requirements?.map((req, index) => (
-              <Badge key={index} variant="secondary" className="bg-green-100 text-green-800 font-medium py-1 px-3 rounded-full">
+              <Badge key={index} variant="secondary" className="bg-blue-100 text-blue-800 font-medium py-1 px-3 rounded-full">
                 {req}
                 <button
                   onClick={() =>
@@ -154,7 +154,7 @@ export default function JobForm() {
                       requirements: prev.requirements?.filter((_, i) => i !== index),
                     }))
                   }
-                  className="ml-2 text-green-600 hover:text-green-800 transition-colors"
+                  className="ml-2 text-blue-600 hover:text-blue-800 transition-colors"
                 >
                   ×
                 </button>
@@ -165,7 +165,7 @@ export default function JobForm() {
         <Button
           onClick={handleSubmit}
           disabled={isLoading}
-          className="w-full bg-gradient-to-r from-green-700 to-teal-700 hover:from-green-800 hover:to-teal-800 text-white rounded-lg py-3 font-semibold text-sm transition-all duration-300"
+          className="w-full bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 text-white rounded-lg py-3 font-semibold text-sm transition-all duration-300"
         >
           {isLoading ? (
             <div className="flex items-center space-x-3">

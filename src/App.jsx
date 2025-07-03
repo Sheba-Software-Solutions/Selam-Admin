@@ -18,16 +18,10 @@ function App({ onLogout }) {
   return (
     <FormProvider>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-        <Navbar onLogout={onLogout} />
+        <Navbar onLogout={onLogout} sidebarCollapsed={sidebarCollapsed} />
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-8 flex flex-row items-start gap-8">
           <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed} onLogout={onLogout} />
-          <main className="flex-1 ml-0 md:ml-0 transition-all duration-300">
-            <div className="mb-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div>
-                <h2 className="text-3xl font-bold text-slate-800 mb-1">Content Management</h2>
-                <p className="text-slate-600">Create and manage products and job postings</p>
-              </div>
-            </div>
+          <main className={`flex-1 transition-all duration-300 ${sidebarCollapsed ? 'ml-20' : 'ml-56'}`}>
             <div className={`grid grid-cols-1 ${gridCols} gap-8 animate-fade-in`}>
               {activeTab === 'products' && (
                 <>

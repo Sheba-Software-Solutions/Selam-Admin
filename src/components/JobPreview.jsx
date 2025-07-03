@@ -9,7 +9,7 @@ export default function JobPreview() {
 
   return (
     <Card className="bg-white/70 backdrop-blur-sm border-slate-200/50 shadow-lg">
-      <CardHeader className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-t-lg">
+      <CardHeader className="bg-gradient-to-r from-blue-700 to-blue-500 text-white rounded-t-lg">
         <CardTitle className="flex items-center space-x-2">
           <Eye className="w-5 h-5" />
           <span>Preview</span>
@@ -19,8 +19,8 @@ export default function JobPreview() {
         <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="text-sm text-green-600 font-medium">Available</span>
+              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+              <span className="text-sm text-blue-600 font-medium">Available</span>
             </div>
             <Badge className="bg-blue-100 text-blue-700">
               ${jobForm.salary || '$30,000 - $45,000'}
@@ -57,7 +57,7 @@ export default function JobPreview() {
               <ul className="space-y-1">
                 {jobForm.requirements.map((req, index) => (
                   <li key={index} className="text-sm text-slate-600 flex items-start">
-                    <span className="text-green-500 mr-2">•</span>
+                    <span className="text-blue-500 mr-2">•</span>
                     {req}
                   </li>
                 ))}
